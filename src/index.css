@@ -1,0 +1,74 @@
+body {
+  background-image: url('../images/iot.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-heading {
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  padding: 30px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+h2 {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+input {
+  width: 200px;
+  height: 30px;
+}
+
+.submit-btn {
+  cursor: pointer;
+  width: 80px; /* Increase the width */
+  height: 40px; /* Increase the height */
+  font-size: 16px; /* Increase the font size */
+  border-radius: 10px;
+  background-color: #67859f;
+  color: white;
+  margin-left: 100px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a box shadow for pressed effect */
+
+  
+}
+
+.submit-btn:hover {
+  /* background-color: gray; */
+  color: white;
+
+}
+
+.submit-btn:active {
+  transform: translateY(1px); /* Move the button down slightly when pressed */
+}
