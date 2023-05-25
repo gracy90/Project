@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
-import './index';
+import '../index.css';
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginFormData, setLoginFom] = useState({username:'',password:''});
+
+  const handleChange=(e)=>{
+        e.preventDefault();
+        setLoginFom((prev)=>({
+            ...prev,[e.target.id]:e.target.value
+        }));
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(`Username: ${username}, Password: ${password}`);
   }
+
+  const {username,password}=loginFormData;
 
   return (
     <div className="login-container">
@@ -16,11 +24,11 @@ function Login() {
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
           <h2>Username:</h2>
-          <input type="text" value={username} onChange={(event) => setUsername(event.target.value)} />
+          <input type="text" value={username} onChange={(e) => handleChange(e)} />
         </div>
         <div className="form-group">
           <h2>Password:</h2>
-          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+          <input type="password" value={password} onChange={(e) => handleChange(e)} />
         </div>
         <button className="submit-btn" type="submit">Submit</button>
       </form>
