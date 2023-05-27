@@ -1,6 +1,8 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link,useNavigate } from "react-router-dom";
+import {getAuth} from "firebase/auth"
 
 const NavBar = () => {
+  const navigate= useNavigate();
   const location = useLocation();
 
   const pathName = (route) => {
@@ -10,6 +12,11 @@ const NavBar = () => {
   };
 
   const user = true;
+  const auth = getAuth();
+ const handleLogout = ()=>{
+    auth.signOut();
+     navigate('/login');  
+ }
 
   return (
     <div className="NavBarContainer">
@@ -25,8 +32,8 @@ const NavBar = () => {
             <Link to="/viewReport">View Report</Link>
           </li>
           <li className={pathName('/login')?'NavItemSelected':'NavItemUnselected'}>
-            {user ? (
-              <button type="button">Logout</button>
+            {auth.currentUser!=null ? (
+              <button type="button" className="submit-btn" onClick={handleLogout}>Logout</button>
             ) : (
               <Link to="/login">Login</Link>
             )}
@@ -34,12 +41,12 @@ const NavBar = () => {
         </ul>
       </div>
       <div>
-        {user && (
+        {auth.currentUser&& (
           <div className="ProfileContainer">
             <div className="CircleAvatar">
               <img className="ProfileImage" src="" alt="profileImage" />
             </div>
-            <p>username</p>
+            <p>{auth.currentUser.displayName}</p>
           </div>
         )}
       </div>

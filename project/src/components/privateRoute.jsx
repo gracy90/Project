@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from "react";
 import { Outlet,Navigate } from "react-router-dom";
-import {UserContext} from "../context/userContext/userContext";
-
+import { useAuthStatus } from "../hooks/useAuthStatus";
 function PrivateRoute(){
-    const {getLocalUser,setUser,user}=useContext(UserContext)
-    // useEffect(()=>{
-    //     getLocalUser();
-    //    },[])
-    return(user.length>0?<Outlet/>:<Navigate to={'/login'}/>)
+    const {loggedIn,checkingStatus}=useAuthStatus()
+    if (checkingStatus){
+        return <Spinner/>
+    }
+    return (
+        loggedIn ? <Outlet/>: <Navigate to='/login'/>
+        )
 
 }
 export default PrivateRoute;
